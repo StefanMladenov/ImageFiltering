@@ -91,16 +91,19 @@ namespace ImageFilteringMMS
 
         private void EmbossLaplacian3x3(object sender, EventArgs e)
         {
+            Controller.NTreshold = 1;
             SetFilterAndOnCore(3, true);
         }
 
         private void Emboss5x5Click(object sender, EventArgs e)
         {
+            Controller.NTreshold = 3;
             SetFilterAndOnCore(4, true);
         }
 
         private void Emboss7x7Click(object sender, EventArgs e)
         {
+            Controller.NTreshold = 5;
             SetFilterAndOnCore(5, true);
         }
         #endregion

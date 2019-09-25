@@ -83,7 +83,6 @@
     <Compile Include="Model\Conv7x7.cs" />
     <Compile Include="Model\ConvolutionFilterBase.cs" />
     <Compile Include="Model\ConvolutionMatrix.cs" />
-    <Compile Include="Model\ConvolutionMatrix5x5.cs" />
     <Compile Include="Model\EdgeDetectDifference.cs" />
     <Compile Include="Model\EmbossLaplacian.cs" />
     <Compile Include="Model\EmbossLaplacian3x3.cs" />
