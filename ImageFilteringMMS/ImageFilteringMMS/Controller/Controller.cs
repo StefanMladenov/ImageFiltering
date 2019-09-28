@@ -30,8 +30,10 @@ namespace ImageFilteringMMS.Controller
         public int NTreshold { get => _nTreshold; set => _nTreshold = value; }
         public ConvolutionMatrix Matrix { get => _matrix; set => _matrix = value; }
         public bool OnCore { get => _onCore; set => _onCore = value; }
+        public bool ValuesOverriden { get => _valuesOverriden; set=>_valuesOverriden = value; }
 
         private ConvolutionMatrix _matrix;
+        private bool _valuesOverriden;
         private int _nTreshold;
         private int _pixel;
         private short _nDegree;
@@ -83,8 +85,9 @@ namespace ImageFilteringMMS.Controller
         {
             Bitmap _tmpBMP = (Bitmap)(_bmp.Clone());
             BitmapWithInfo bmi = new BitmapWithInfo();
-            bmi.bmp = _tmpBMP;
-            bmi.onCore = OnCore;
+            bmi.Bmp = _tmpBMP;
+            bmi.OnCore = OnCore;
+            bmi.VariablesOverriden = ValuesOverriden;
             _bmp = command.Execute(_bmp);
             _undoBuffer.Add(bmi);
             UpdateViews();
@@ -96,13 +99,15 @@ namespace ImageFilteringMMS.Controller
             if (this._undoBuffer.Count != 0)
             {
                 BitmapWithInfo bmi = new BitmapWithInfo();
-                bmi.bmp = _bmp;
-                bmi.onCore = OnCore;
+                bmi.Bmp = _bmp;
+                bmi.OnCore = OnCore;
+                bmi.VariablesOverriden = ValuesOverriden;
                 this._redoBuffer.Push(bmi);
                 BitmapWithInfo lastBmi = new BitmapWithInfo();
                 lastBmi = this._undoBuffer.Last();
-                this._bmp = lastBmi.bmp;
-                this.OnCore = lastBmi.onCore;
+                this._bmp = lastBmi.Bmp;
+                this.OnCore = lastBmi.OnCore;
+                this.ValuesOverriden = lastBmi.VariablesOverriden;
                 this._undoBuffer.RemoveAt(this._undoBuffer.Count - 1);
                 UpdateViews();
                 return true;
@@ -114,14 +119,16 @@ namespace ImageFilteringMMS.Controller
             if (this._redoBuffer.Count != 0)
             {
                 BitmapWithInfo bmi = new BitmapWithInfo();
-                bmi.bmp = _bmp;
-                bmi.onCore = OnCore;
+                bmi.Bmp = _bmp;
+                bmi.OnCore = OnCore;
+                bmi.VariablesOverriden = ValuesOverriden;
                 this._undoBuffer.Add(bmi);
                 // this._undomemory.Add(this.ToByteArray(this._bmp, _bmp.RawFormat).Length);
                 BitmapWithInfo bm = new BitmapWithInfo();
                 bm = this._redoBuffer.Pop();
-                this._bmp = bm.bmp;
-                this.OnCore = bm.onCore;
+                this._bmp = bm.Bmp;
+                this.OnCore = bm.OnCore;
+                this.ValuesOverriden = bm.VariablesOverriden;
                 UpdateViews();
                 return true;
             }
@@ -144,6 +151,7 @@ namespace ImageFilteringMMS.Controller
             CMY1 CMY = new CMY1();
             _bmp = CMY.Execute(_bmp);
             UpdateViews();
+            ValuesOverriden = false;
             return true;
         }
         public void SaveImg()
@@ -270,7 +278,8 @@ namespace ImageFilteringMMS.Controller
 
     public struct BitmapWithInfo
     {
-        public Bitmap bmp;
-        public bool onCore;
+        public Bitmap Bmp;
+        public bool OnCore;
+        public bool VariablesOverriden;
     }
 }

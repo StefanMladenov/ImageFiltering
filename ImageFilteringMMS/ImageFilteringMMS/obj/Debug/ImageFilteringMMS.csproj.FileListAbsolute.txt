@@ -21,3 +21,16 @@ E:\repo\source\repos\ImageFilteringMMS\ImageFilteringMMS\obj\Debug\ImageFilterin
 E:\repo\source\repos\ImageFilteringMMS\ImageFilteringMMS\obj\Debug\ImageFilteringMMS.Parametar.resources
 E:\repo\source\repos\ImageFilteringMMS\ImageFilteringMMS\obj\Debug\ImageFilteringMMS.UndoLevel.resources
 E:\repo\source\repos\ImageFilteringMMS\ImageFilteringMMS\obj\Debug\ImageFilteringMMS.csprojAssemblyReference.cache
+E:\repo\ImageFiltering\ImageFilteringMMS\ImageFilteringMMS\bin\Debug\ImageFilteringMMS.exe.config
+E:\repo\ImageFiltering\ImageFilteringMMS\ImageFilteringMMS\bin\Debug\ImageFilteringMMS.exe
+E:\repo\ImageFiltering\ImageFilteringMMS\ImageFilteringMMS\bin\Debug\ImageFilteringMMS.pdb
+E:\repo\ImageFiltering\ImageFilteringMMS\ImageFilteringMMS\obj\Debug\ImageFilteringMMS.csprojAssemblyReference.cache
+E:\repo\ImageFiltering\ImageFilteringMMS\ImageFilteringMMS\obj\Debug\ImageFilteringMMS.ColorInput.resources
+E:\repo\ImageFiltering\ImageFilteringMMS\ImageFilteringMMS\obj\Debug\ImageFilteringMMS.Form1.resources
+E:\repo\ImageFiltering\ImageFilteringMMS\ImageFilteringMMS\obj\Debug\ImageFilteringMMS.Parametar.resources
+E:\repo\ImageFiltering\ImageFilteringMMS\ImageFilteringMMS\obj\Debug\ImageFilteringMMS.Properties.Resources.resources
+E:\repo\ImageFiltering\ImageFilteringMMS\ImageFilteringMMS\obj\Debug\ImageFilteringMMS.UndoLevel.resources
+E:\repo\ImageFiltering\ImageFilteringMMS\ImageFilteringMMS\obj\Debug\ImageFilteringMMS.csproj.GenerateResource.cache
+E:\repo\ImageFiltering\ImageFilteringMMS\ImageFilteringMMS\obj\Debug\ImageFilteringMMS.csproj.CoreCompileInputs.cache
+E:\repo\ImageFiltering\ImageFilteringMMS\ImageFilteringMMS\obj\Debug\ImageFilteringMMS.exe
+E:\repo\ImageFiltering\ImageFilteringMMS\ImageFilteringMMS\obj\Debug\ImageFilteringMMS.pdb

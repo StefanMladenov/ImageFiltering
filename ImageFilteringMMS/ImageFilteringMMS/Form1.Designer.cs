@@ -52,7 +52,6 @@ namespace ImageFilteringMMS
             this.changeViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.labelDepends = new System.Windows.Forms.Label();
             this.panelViewSingle = new System.Windows.Forms.TableLayoutPanel();
             this.pbOriginal = new System.Windows.Forms.PictureBox();
             this.panelViewMultiply = new System.Windows.Forms.TableLayoutPanel();
@@ -60,7 +59,8 @@ namespace ImageFilteringMMS
             this.pbM = new System.Windows.Forms.PictureBox();
             this.pbC = new System.Windows.Forms.PictureBox();
             this.pbChOriginal = new System.Windows.Forms.PictureBox();
-            this.labelOnCore = new System.Windows.Forms.Label();
+            this.onCoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.variableDependsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelViewSingle.SuspendLayout();
@@ -80,7 +80,9 @@ namespace ImageFilteringMMS
             this.filtersToolStripMenuItem,
             this.undoRedoToolStripMenuItem,
             this.extraFiltersToolStripMenuItem,
-            this.changeViewToolStripMenuItem});
+            this.changeViewToolStripMenuItem,
+            this.onCoreToolStripMenuItem,
+            this.variableDependsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(739, 24);
@@ -131,7 +133,7 @@ namespace ImageFilteringMMS
             // invertToolStripMenuItem
             // 
             this.invertToolStripMenuItem.Name = "invertToolStripMenuItem";
-            this.invertToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.invertToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.invertToolStripMenuItem.Text = "Invert";
             this.invertToolStripMenuItem.Click += new System.EventHandler(this.InvertClicked);
             // 
@@ -142,34 +144,34 @@ namespace ImageFilteringMMS
             this.matrix5x5ToolStripMenuItem,
             this.matrix7x7ToolStripMenuItem});
             this.embossLaplasianToolStripMenuItem.Name = "embossLaplasianToolStripMenuItem";
-            this.embossLaplasianToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.embossLaplasianToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.embossLaplasianToolStripMenuItem.Text = "Emboss Laplacian";
             // 
             // matrix3x3ToolStripMenuItem
             // 
             this.matrix3x3ToolStripMenuItem.Name = "matrix3x3ToolStripMenuItem";
-            this.matrix3x3ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.matrix3x3ToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.matrix3x3ToolStripMenuItem.Text = "Matrix3x3";
             this.matrix3x3ToolStripMenuItem.Click += new System.EventHandler(this.EmbossLaplacian3x3);
             // 
             // matrix5x5ToolStripMenuItem
             // 
             this.matrix5x5ToolStripMenuItem.Name = "matrix5x5ToolStripMenuItem";
-            this.matrix5x5ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.matrix5x5ToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.matrix5x5ToolStripMenuItem.Text = "Matrix5x5";
             this.matrix5x5ToolStripMenuItem.Click += new System.EventHandler(this.Emboss5x5Click);
             // 
             // matrix7x7ToolStripMenuItem
             // 
             this.matrix7x7ToolStripMenuItem.Name = "matrix7x7ToolStripMenuItem";
-            this.matrix7x7ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.matrix7x7ToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.matrix7x7ToolStripMenuItem.Text = "Matrix7x7";
             this.matrix7x7ToolStripMenuItem.Click += new System.EventHandler(this.Emboss7x7Click);
             // 
             // gammaToolStripMenuItem
             // 
             this.gammaToolStripMenuItem.Name = "gammaToolStripMenuItem";
-            this.gammaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gammaToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.gammaToolStripMenuItem.Text = "Gamma";
             this.gammaToolStripMenuItem.Click += new System.EventHandler(this.GammaClicked);
             // 
@@ -244,26 +246,13 @@ namespace ImageFilteringMMS
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.labelDepends);
             this.panel1.Controls.Add(this.panelViewSingle);
             this.panel1.Controls.Add(this.panelViewMultiply);
-            this.panel1.Controls.Add(this.labelOnCore);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(739, 487);
             this.panel1.TabIndex = 2;
-            // 
-            // labelDepends
-            // 
-            this.labelDepends.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelDepends.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDepends.Location = new System.Drawing.Point(0, 447);
-            this.labelDepends.Name = "labelDepends";
-            this.labelDepends.Size = new System.Drawing.Size(739, 40);
-            this.labelDepends.TabIndex = 13;
-            this.labelDepends.Text = "Depends";
-            this.labelDepends.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelViewSingle
             // 
@@ -356,16 +345,19 @@ namespace ImageFilteringMMS
             this.pbChOriginal.TabIndex = 0;
             this.pbChOriginal.TabStop = false;
             // 
-            // labelOnCore
+            // onCoreToolStripMenuItem
             // 
-            this.labelOnCore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOnCore.Location = new System.Drawing.Point(0, 0);
-            this.labelOnCore.Name = "labelOnCore";
-            this.labelOnCore.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
-            this.labelOnCore.Size = new System.Drawing.Size(739, 40);
-            this.labelOnCore.TabIndex = 9;
-            this.labelOnCore.Text = "OnCore";
-            this.labelOnCore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.onCoreToolStripMenuItem.Name = "onCoreToolStripMenuItem";
+            this.onCoreToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.onCoreToolStripMenuItem.Text = "OnCore";
+            this.onCoreToolStripMenuItem.Click += new System.EventHandler(this.OnCoreClicked);
+            // 
+            // variableDependsToolStripMenuItem
+            // 
+            this.variableDependsToolStripMenuItem.Name = "variableDependsToolStripMenuItem";
+            this.variableDependsToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
+            this.variableDependsToolStripMenuItem.Text = "Variable Depends";
+            this.variableDependsToolStripMenuItem.Click += new System.EventHandler(this.VariableDependsClick);
             // 
             // Form1
             // 
@@ -415,7 +407,6 @@ namespace ImageFilteringMMS
         private System.Windows.Forms.ToolStripMenuItem randomJitterToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label labelOnCore;
         private System.Windows.Forms.ToolStripMenuItem changeViewToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel panelViewSingle;
         private System.Windows.Forms.PictureBox pbOriginal;
@@ -427,7 +418,8 @@ namespace ImageFilteringMMS
         private System.Windows.Forms.ToolStripMenuItem matrix3x3ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem matrix5x5ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem matrix7x7ToolStripMenuItem;
-        private System.Windows.Forms.Label labelDepends;
+        private System.Windows.Forms.ToolStripMenuItem onCoreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem variableDependsToolStripMenuItem;
     }
 }
 

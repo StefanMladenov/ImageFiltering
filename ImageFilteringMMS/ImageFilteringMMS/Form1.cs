@@ -52,7 +52,7 @@ namespace ImageFilteringMMS
         {
             Controller.LoadImage();
             Controller.OnCore = false;
-            labelOnCore.Text = Controller.OnCore.ToString();
+            Controller.ValuesOverriden = false;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace ImageFilteringMMS
         #region Second Dropdown Menu(FILTERS_ONCLICK)
         private void InvertClicked(object sender, EventArgs e)
         {
-            SetFilterAndOnCore(0, false);
+            SetFilter(0, false,false);
         }
 
         private void GammaClicked(object sender, EventArgs e)
@@ -85,46 +85,25 @@ namespace ImageFilteringMMS
                     Controller.Blue = f.Blue;
                     Controller.Green = f.Green;
                 }
-                SetFilterAndOnCore(1, true);
+                SetFilter(1, true,false);
             }
         }
 
         private void EmbossLaplacian3x3(object sender, EventArgs e)
         {
             Controller.NTreshold = 1;
-            SetFilterAndOnCore(3, true);
+            SetFilter(3, true,true);
         }
 
         private void Emboss5x5Click(object sender, EventArgs e)
         {
-            SetFilterAndOnCore(4, true);
+            SetFilter(4, true,true);
         }
 
         private void Emboss7x7Click(object sender, EventArgs e)
         {
-            SetFilterAndOnCore(5, true);
+            SetFilter(5, true,true);
         }
-        #endregion
-
-        #region Fourth Dropdown Menu(EXTRA_FILTERS_ONCLICK)
-
-        private void EdgeDetectDiffClick(object sender, EventArgs e)
-        {
-            Parametar f = new Parametar();
-            f.ShowDialog();
-            if (DialogResult.OK == f.DialogResult)
-            {
-                Controller.NTreshold = f.nValue;
-                SetFilterAndOnCore(6, true);
-            }
-        }
-
-        private void RandomJitterClick(object sender, EventArgs e)
-        {
-            Controller.NDegree = 5;
-            SetFilterAndOnCore(2, true);
-        }
-
         #endregion
 
         #region Third Dropdown Menu(OPTIONS)
@@ -135,7 +114,6 @@ namespace ImageFilteringMMS
             if(b == true)
             {
                 this.Invalidate();
-                labelOnCore.Text = Controller.OnCore.ToString();
             }
             else
             {
@@ -150,7 +128,6 @@ namespace ImageFilteringMMS
             if (b == true)
             {
                 this.Invalidate();
-                labelOnCore.Text = Controller.OnCore.ToString();
             }
             else
             {
@@ -160,112 +137,65 @@ namespace ImageFilteringMMS
         
         #endregion
 
-        private void SetFilterAndOnCore(int n, bool b)
+        #region Fourth Dropdown Menu(EXTRA_FILTERS_ONCLICK)
+
+        private void EdgeDetectDiffClick(object sender, EventArgs e)
         {
-            Controller.SetFilter(n);
-            if(n == 4 || n == 5 || n == 6)
+            Parametar f = new Parametar();
+            f.ShowDialog();
+            if (DialogResult.OK == f.DialogResult)
             {
-                labelDepends.Text = "false";
+                Controller.NTreshold = f.nValue;
+                SetFilter(6, true,false);
+            }
+        }
+
+        private void RandomJitterClick(object sender, EventArgs e)
+        {
+            Controller.NDegree = 5;
+            SetFilter(2, true,false);
+        }
+
+        #endregion
+
+        private void OnCoreClicked(object sender, EventArgs e)
+        {
+            string str = "";
+            if(this.Controller.OnCore)
+            {
+                str += "Last filter executes on core."; 
             }
             else
             {
-                labelDepends.Text = "true";
+                str += "Last filter does not execute on core."; 
             }
+            MessageBox.Show(str);
+        }
+
+        private void VariableDependsClick(object sender, EventArgs e)
+        {
+            string str = "";
+            if (this.Controller.ValuesOverriden)
+            {
+                str += "Variables value are overriden by last used filter.";
+            }
+            else
+            {
+                str += "Variables value are not overriden by last used filter.";
+            }
+            MessageBox.Show(str);
+        }
+
+        private void SetFilter(int n, bool b,bool k)
+        {
+            Controller.SetFilter(n);
             Controller.OnCore = b;
+            Controller.ValuesOverriden = k;
             if(b == true)
             {
                 this.Invalidate();
             }
-            labelOnCore.Text = b.ToString();
         }
-
-
-        #endregion
-
-        //        #region EmbossLaplacian
-        //        //private void Matrix3x3(object sender, EventArgs e)
-        //       // {
-        //            //List<Bitmap> View1List = new List<Bitmap>();
-        //            //List<Bitmap> View2List = new List<Bitmap>();
-        //            //Bitmap bmp = Controller.AfterFiltering();
-        //            //Bitmap cloneBmp = (Bitmap)bmp.Clone();
-        //            //CMY CMY = new CMY(cloneBmp);
-        //            //ConvolutionMatrix m = new ConvolutionMatrix();
-        //            //m.SetAll(-1);
-        //            //m.Center = 4;
-        //            //m.Factor = 127;
-        //            //m.TopMid = m.MidLeft = m.MidRight = m.BottomMid = 0;
-        //            //m.Offset = 127;
-        //            //Conv3x3 conv3x3 = new Conv3x3(m, false);
-        //            //EmbossLaplacian EmbossLaplacian = new EmbossLaplacian(m,cloneBmp, 1);
-        //            //Bitmap CMYbmp = Controller.ExecuteCommand(EmbossLaplacian);
-        //            //View1List.Add(CMYbmp);
-        //            //Bitmap CImage = CMY.ConvertImageToCyan();
-        //            //Bitmap MImage = CMY.ConvertImageToMagenta();
-        //            //Bitmap YImage = CMY.ConvertImageToYellow();
-        //            //View2List.Add(CMYbmp);
-        //            //View2List.Add(CMY.ConvertImageToCyan());
-        //            //View2List.Add(CMY.ConvertImageToMagenta());
-        //            //View2List.Add(CMY.ConvertImageToYellow());
-        //            //View1.UpdateImages(View1List);
-        //            //View2.UpdateImages(View2List);
-
-        //        }
-
-        //        //private void Matrix5x5(object sender, EventArgs e) { return; }
-        //        //{
-        //        //    List<Bitmap> View1List = new List<Bitmap>();
-        //        //    List<Bitmap> View2List = new List<Bitmap>();
-        //        //    Bitmap bmp = Controller.AfterFiltering();
-        //        //    Bitmap cloneBmp = (Bitmap)bmp.Clone();
-        //        //    CMY CMY = new CMY(cloneBmp);
-        //        //    ConvolutionMatrix m = new ConvolutionMatrix();
-        //        //    m.SetAll(-1);
-        //        //    m.Center = 4;
-        //        //    m.Factor = 127;
-        //        //    m.TopMid = m.MidLeft = m.MidRight = m.BottomMid = 0;
-        //        //    m.Offset = 127;
-        //        //    Conv5x5 conv5x5 = new Conv5x5(m, false);
-        //        //    EmbossLaplacian EmbossLaplacian = new EmbossLaplacian(m,cloneBmp, 1);
-        //        //    Bitmap CMYbmp = Controller.ExecuteCommand(EmbossLaplacian);
-        //        //    View1List.Add(CMYbmp);
-        //        //    Bitmap CImage = CMY.ConvertImageToCyan();
-        //        //    Bitmap MImage = CMY.ConvertImageToMagenta();
-        //        //    Bitmap YImage = CMY.ConvertImageToYellow();
-        //        //    View2List.Add(CMYbmp);
-        //        //    View2List.Add(CMY.ConvertImageToCyan());
-        //        //    View2List.Add(CMY.ConvertImageToMagenta());
-        //        //    View2List.Add(CMY.ConvertImageToYellow());
-        //        //    View1.UpdateImages(View1List);
-        //        //    View2.UpdateImages(View2List);
-        //        }
-
-        //        private void Matrix7x7(object sender, EventArgs e)
-        //        {
-        //            //List<Bitmap> View1List = new List<Bitmap>();
-        //            //List<Bitmap> View2List = new List<Bitmap>();
-        //            //Bitmap bmp = Controller.AfterFiltering();
-        //            //Bitmap cloneBmp = (Bitmap)bmp.Clone();
-        //            //CMY CMY = new CMY(cloneBmp);
-        //            //ConvolutionMatrix m = new ConvolutionMatrix();
-        //            //m.SetAll(-1);
-        //            //m.Center = 4;
-        //            //m.Factor = 127;
-        //            //m.TopMid = m.MidLeft = m.MidRight = m.BottomMid = 0;
-        //            //m.Offset = 127;
-        //            //Conv7x7 conv7x7 = new Conv7x7(m, false);
-        //            //EmbossLaplacian EmbossLaplacian = new EmbossLaplacian(m,cloneBmp, 1);
-        //            //Bitmap CMYbmp = Controller.ExecuteCommand(EmbossLaplacian);
-        //            //View1List.Add(CMYbmp);
-        //            //Bitmap CImage = CMY.ConvertImageToCyan();
-        //            //Bitmap MImage = CMY.ConvertImageToMagenta();
-        //            //Bitmap YImage = CMY.ConvertImageToYellow();
-        //            //View2List.Add(CMYbmp);
-        //            //View2List.Add(CMY.ConvertImageToCyan());
-        //            //View2List.Add(CMY.ConvertImageToMagenta());
-        //            //View2List.Add(CMY.ConvertImageToYellow());
-        //            //View1.UpdateImages(View1List);
-        //            //View2.UpdateImages(View2List);
 
         private void ChangeViewClick(object sender, EventArgs e)
         {
@@ -280,5 +210,9 @@ namespace ImageFilteringMMS
                 panelViewSingle.Visible = true;
             }
         }
+
+        #endregion
+
+
     }
 }
