@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -20,6 +21,7 @@ namespace ImageFilteringMMS.Controller
         private List<BitmapWithInfo> _undoBuffer;
         private Stack<BitmapWithInfo> _redoBuffer;
         private int _activeView;
+        private int _undoMemory;
 
         public bool ImageLoaded { get => _imageLoaded; set => _imageLoaded = value; }
         public int Red { get => _red; set => _red = value; }
@@ -88,6 +90,11 @@ namespace ImageFilteringMMS.Controller
             bmi.Bmp = _tmpBMP;
             bmi.OnCore = OnCore;
             bmi.VariablesOverriden = ValuesOverriden;
+            while (this._undomemory.Sum() > this._undoMemory * 1024 * 1024)
+            {
+                this._undoBuffer.RemoveAt(0);
+                this._undomemory.RemoveAt(0);
+            }
             _bmp = command.Execute(_bmp);
             _undoBuffer.Add(bmi);
             UpdateViews();
@@ -123,7 +130,7 @@ namespace ImageFilteringMMS.Controller
                 bmi.OnCore = OnCore;
                 bmi.VariablesOverriden = ValuesOverriden;
                 this._undoBuffer.Add(bmi);
-                // this._undomemory.Add(this.ToByteArray(this._bmp, _bmp.RawFormat).Length);
+                this._undomemory.Add(this.ToByteArray(this._bmp, _bmp.RawFormat).Length);
                 BitmapWithInfo bm = new BitmapWithInfo();
                 bm = this._redoBuffer.Pop();
                 this._bmp = bm.Bmp;
@@ -148,7 +155,7 @@ namespace ImageFilteringMMS.Controller
                 ImageLoaded = false;
                 return false;
             }
-            CMY1 CMY = new CMY1();
+            CMY CMY = new CMY();
             _bmp = CMY.Execute(_bmp);
             UpdateViews();
             ValuesOverriden = false;
@@ -168,7 +175,16 @@ namespace ImageFilteringMMS.Controller
         }
 
         #endregion
-        
+
+        private byte[] ToByteArray(Image image, ImageFormat format)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, ImageFormat.Jpeg);
+                return ms.ToArray();
+            }
+        }
+
         public Bitmap getCyanChannel(Bitmap bm)
         {
             Bitmap b = (Bitmap)bm.Clone();
@@ -262,6 +278,11 @@ namespace ImageFilteringMMS.Controller
                 }
                 ExecuteCommand(_command);
             }
+        }
+
+        public void setUndoMemory(int memory)
+        {
+            this._undoMemory = memory;
         }
     }
 

@@ -50,6 +50,8 @@ namespace ImageFilteringMMS
             this.edgeDetectDifferenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.randomJitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.onCoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.variableDependsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelViewSingle = new System.Windows.Forms.TableLayoutPanel();
@@ -59,8 +61,6 @@ namespace ImageFilteringMMS
             this.pbM = new System.Windows.Forms.PictureBox();
             this.pbC = new System.Windows.Forms.PictureBox();
             this.pbChOriginal = new System.Windows.Forms.PictureBox();
-            this.onCoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.variableDependsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelViewSingle.SuspendLayout();
@@ -188,22 +188,23 @@ namespace ImageFilteringMMS
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.undoToolStripMenuItem.Text = "Undo";
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.UndoClick);
             // 
             // redoToolStripMenuItem
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoClick);
             // 
             // podesavanjeToolStripMenuItem
             // 
             this.podesavanjeToolStripMenuItem.Name = "podesavanjeToolStripMenuItem";
-            this.podesavanjeToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.podesavanjeToolStripMenuItem.Text = "Podesavanje";
+            this.podesavanjeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.podesavanjeToolStripMenuItem.Text = "Set Undo Level";
+            this.podesavanjeToolStripMenuItem.Click += new System.EventHandler(this.UndoLevelClick);
             // 
             // extraFiltersToolStripMenuItem
             // 
@@ -234,6 +235,20 @@ namespace ImageFilteringMMS
             this.changeViewToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
             this.changeViewToolStripMenuItem.Text = "ChangeView";
             this.changeViewToolStripMenuItem.Click += new System.EventHandler(this.ChangeViewClick);
+            // 
+            // onCoreToolStripMenuItem
+            // 
+            this.onCoreToolStripMenuItem.Name = "onCoreToolStripMenuItem";
+            this.onCoreToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.onCoreToolStripMenuItem.Text = "OnCore";
+            this.onCoreToolStripMenuItem.Click += new System.EventHandler(this.OnCoreClicked);
+            // 
+            // variableDependsToolStripMenuItem
+            // 
+            this.variableDependsToolStripMenuItem.Name = "variableDependsToolStripMenuItem";
+            this.variableDependsToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
+            this.variableDependsToolStripMenuItem.Text = "Variable Depends";
+            this.variableDependsToolStripMenuItem.Click += new System.EventHandler(this.VariableDependsClick);
             // 
             // statusStrip1
             // 
@@ -344,20 +359,6 @@ namespace ImageFilteringMMS
             this.pbChOriginal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbChOriginal.TabIndex = 0;
             this.pbChOriginal.TabStop = false;
-            // 
-            // onCoreToolStripMenuItem
-            // 
-            this.onCoreToolStripMenuItem.Name = "onCoreToolStripMenuItem";
-            this.onCoreToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.onCoreToolStripMenuItem.Text = "OnCore";
-            this.onCoreToolStripMenuItem.Click += new System.EventHandler(this.OnCoreClicked);
-            // 
-            // variableDependsToolStripMenuItem
-            // 
-            this.variableDependsToolStripMenuItem.Name = "variableDependsToolStripMenuItem";
-            this.variableDependsToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
-            this.variableDependsToolStripMenuItem.Text = "Variable Depends";
-            this.variableDependsToolStripMenuItem.Click += new System.EventHandler(this.VariableDependsClick);
             // 
             // Form1
             // 

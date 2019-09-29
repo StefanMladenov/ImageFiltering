@@ -134,7 +134,17 @@ namespace ImageFilteringMMS
                 MessageBox.Show("Nothing to redo");
             }
         }
-        
+
+        private void UndoLevelClick(object sender, EventArgs e)
+        {
+            UndoLevel f = new UndoLevel();
+            f.ShowDialog();
+            if (DialogResult.OK == f.DialogResult)
+            {
+                this.Controller.setUndoMemory(f.undoLevel);
+            }
+        }
+
         #endregion
 
         #region Fourth Dropdown Menu(EXTRA_FILTERS_ONCLICK)
@@ -167,7 +177,7 @@ namespace ImageFilteringMMS
             }
             else
             {
-                str += "Last filter does not execute on core."; 
+                str += "Last filter does NOT execute on core."; 
             }
             MessageBox.Show(str);
         }
@@ -181,7 +191,7 @@ namespace ImageFilteringMMS
             }
             else
             {
-                str += "Variables value are not overriden by last used filter.";
+                str += "Variables value are NOT overriden by last used filter.";
             }
             MessageBox.Show(str);
         }
@@ -212,7 +222,5 @@ namespace ImageFilteringMMS
         }
 
         #endregion
-
-
     }
 }

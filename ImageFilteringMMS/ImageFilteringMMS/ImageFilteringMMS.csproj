@@ -77,14 +77,8 @@
     </Compile>
     <Compile Include="Controller\ICommand.cs" />
     <Compile Include="Model\CMY.cs" />
-    <Compile Include="Model\CMY1.cs" />
-    <Compile Include="Model\Conv3x3.cs" />
-    <Compile Include="Model\Conv5x5.cs" />
-    <Compile Include="Model\Conv7x7.cs" />
-    <Compile Include="Model\ConvolutionFilterBase.cs" />
     <Compile Include="Model\ConvolutionMatrix.cs" />
     <Compile Include="Model\EdgeDetectDifference.cs" />
-    <Compile Include="Model\EmbossLaplacian.cs" />
     <Compile Include="Model\EmbossLaplacian3x3.cs" />
     <Compile Include="Model\EmbossLaplacian5x5.cs" />
     <Compile Include="Model\EmbossLaplacian7x7.cs" />
